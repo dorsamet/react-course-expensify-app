@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { removeExpense } from '../actions/expenses';
+import moment from 'moment';
+import numeral from 'numeral';
 
-export const ExpenseListItem = ( { description, amount, createdAt, id } ) => {
-return (
-    <div>
-        <Link to={`/edit/${id}`}><h3>{description}</h3></Link>
-        <p>{amount} - {createdAt}</p>
-    </div>
-);
-    }
+const ExpenseListItem = ({ description, amount, createdAt, id }) => {
+    console.log(amount);
+    return (
+        <div>
+            <Link to={`/edit/${id}`}><h3>{description}</h3></Link>
+            <p>
+            {numeral(amount / 100).format('$0,0.00')}
+            -
+            {moment(createdAt).format('Do/MMMM/YYYY')}
+            </p>
+        </div>
+    );
+}
 
-export default connect()(ExpenseListItem);
+export default ExpenseListItem;
