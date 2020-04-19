@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 
-export const PrivateRoute = ({
+export const PublicRoute = ({
     isAuthenticated,
     component: Component,
     ...rest
@@ -14,14 +14,14 @@ export const PrivateRoute = ({
                 (props) => {
                     if (isAuthenticated) {
                         return (
+                            <Redirect to="/dashboard" />
+                        )
+                    } else {
+                        return (
                             <div>
                                 <Header />
                                 <Component {...props} />
                             </div>
-                        )
-                    } else {
-                        return (
-                            <Redirect to="/" />
                         )
                     }
             }
@@ -34,4 +34,4 @@ const mapStateToProps = (state) => ({
     }
 )
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps)(PublicRoute);
