@@ -1,0 +1,15 @@
+.list-header {
+    background: $header-background;
+    border: 1px solid darken($header-background, 7%);
+    color: $gray;
+    display: flex;
+    justify-content: space-between;
+    padding: $size-small $size-medium;
+}
+
+.list-body {
+    margin-bottom: $size-medium;
+    @media (min-width: $desktop-breakpoint) {
+        margin-bottom: $size-large;
+    }
+}

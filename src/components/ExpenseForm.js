@@ -11,7 +11,7 @@ class ExpenseForm extends React.Component {
             amount: props.expense ? (props.expense.amount / 100).toString() : '',
             createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
             calendarFocused: false,
-            error: ''    
+            error: ''
         }
     }
 
@@ -46,9 +46,9 @@ class ExpenseForm extends React.Component {
         e.preventDefault();
 
         if (!this.state.description || !this.state.amount) {
-            this.setState(() => ( { error: 'Please provide description and amount.' } ))
+            this.setState(() => ({ error: 'Please provide description and amount.' }))
         } else {
-            this.setState(() => ( { error: '' } ))
+            this.setState(() => ({ error: '' }))
             this.props.onSubmit({
                 description: this.state.description,
                 amount: parseFloat(this.state.amount) * 100,
@@ -60,23 +60,23 @@ class ExpenseForm extends React.Component {
 
     render() {
         return (
-            <div>
-                {this.state.error && <p>{this.state.error}</p>}
-                <form onSubmit={this.onSubmit}>
-                    <input type="text" placeholder="Description" autoFocus value={this.state.description} onChange={this.onDescriptionChanged} />
-                    <input type="text" placeholder="Amount" value={this.state.amount} onChange={this.onAmountChanged} />
-                    <SingleDatePicker
-                        date={this.state.createdAt}
-                        onDateChange={this.onMomentChange}
-                        focused={this.state.calendarFocused}
-                        onFocusChange={this.onCalendarFocusChange}
-                        numberOfMonths={1}
-                        isOutsideRange={(day) => false}
-                    />
-                    <textarea type="text" placeholder="Add a note for your expense" value={this.state.note} onChange={this.onNoteChanged}></textarea>
-                    <button>Add expense</button>
-                </form>
-            </div>
+            <form className="form" onSubmit={this.onSubmit}>
+                {this.state.error && <p className="form__error">{this.state.error}</p>}
+                <input type="text" className="text-input" placeholder="Description" autoFocus value={this.state.description} onChange={this.onDescriptionChanged} />
+                <input type="text" className="text-input" placeholder="Amount" value={this.state.amount} onChange={this.onAmountChanged} />
+                <SingleDatePicker
+                    date={this.state.createdAt}
+                    onDateChange={this.onMomentChange}
+                    focused={this.state.calendarFocused}
+                    onFocusChange={this.onCalendarFocusChange}
+                    numberOfMonths={1}
+                    isOutsideRange={(day) => false}
+                />
+                <textarea type="text" className="textarea" placeholder="Add a note for your expense" value={this.state.note} onChange={this.onNoteChanged}></textarea>
+                <div>
+                    <button className="button">Save expense</button>
+                </div>
+            </form>
         );
     }
 }

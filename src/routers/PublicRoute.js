@@ -19,7 +19,6 @@ export const PublicRoute = ({
                     } else {
                         return (
                             <div>
-                                <Header />
                                 <Component {...props} />
                             </div>
                         )

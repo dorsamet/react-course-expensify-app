@@ -1,0 +1,18 @@
+form {
+    display: flex;
+    flex-direction: column;
+    input {
+        margin-bottom: $size-medium;
+    }
+    div {
+        margin-bottom: $size-smaller;
+    }
+    textarea {
+        margin-bottom: $size-medium;
+    }
+}
+
+.form__error {
+    margin: 0 0 $size-medium 0;
+    font-style: italic;
+}
